@@ -1,3 +1,4 @@
+import 'package:auto_animated/auto_animated.dart';
 import 'package:fakestore/models/products.dart';
 import 'package:fakestore/providers/product_provider.dart';
 import 'package:fakestore/views/widgets/product_card.dart';
@@ -29,11 +30,38 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     List<Product>? products = productProvider.products;
+    final options = LiveOptions(
+      showItemInterval: const Duration(milliseconds: 55),
+      visibleFraction: 0.05,
+      reAnimateOnVisibility: false,
+    );
+
+    Widget buildAnimatedItem(
+      BuildContext context,
+      int index,
+      Animation<double> animation,
+    ) {
+      Product? product = products[index];
+      return FadeTransition(
+        opacity: Tween<double>(
+          begin: 0,
+          end: 1,
+        ).animate(animation),
+        child: SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(-0.2, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: ProductCard(product: product)),
+      );
+    }
+
     return productProvider.loading
         ? SizedBox(
             child: Center(child: CircularProgressIndicator()),
           )
-        : GridView.builder(
+        : LiveGrid.options(
+            options: options,
             itemCount: products.length,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -43,10 +71,6 @@ class _HomeViewState extends State<HomeView> {
               crossAxisCount: 2,
               childAspectRatio: MediaQuery.of(context).size.height / 800,
             ),
-            itemBuilder: (BuildContext context, int index) {
-              Product? product = products[index];
-
-              return ProductCard(product: product);
-            });
+            itemBuilder: buildAnimatedItem);
   }
 }

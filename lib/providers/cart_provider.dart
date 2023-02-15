@@ -5,7 +5,9 @@ import 'package:flutter/foundation.dart';
 class CartProvider extends ChangeNotifier {
   //
   List<Cart> cartItems = [];
+  List<Cart> get items => cartItems;
   int totalCartItems = 0;
+  int totalItems = 0;
   bool loading = false;
   double subTotalPrice = 0.0;
   double discountCartPrice = 0.0;
@@ -17,10 +19,12 @@ class CartProvider extends ChangeNotifier {
 
   void initialise() async {
     loading = true;
+    totalItems = 0;
     notifyListeners();
     try {
       cartItems = CartServices.productsInCart;
       calculateSubTotal();
+      totalItems++;
       loading = false;
       notifyListeners();
     } catch (e) {
@@ -39,6 +43,7 @@ class CartProvider extends ChangeNotifier {
     cartItems.forEach(
       (cartItem) {
         totalCartItems += cartItem.selectedQty!;
+        totalItems++;
         final totalProductPrice = cartItem.price! * cartItem.selectedQty!;
         subTotalPrice += totalProductPrice;
       },
@@ -52,7 +57,7 @@ class CartProvider extends ChangeNotifier {
   deleteCartItem(int index) async {
     //remove item/product from cart
     cartItems.removeAt(index);
-    await CartServices.saveCartItems(cartItems);
+    // await CartServices.saveCartItems(cartItems);
     initialise();
   }
 

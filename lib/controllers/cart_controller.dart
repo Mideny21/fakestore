@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:fakestore/models/cart.dart';
 import 'package:fakestore/utils/storage_service.dart';
 
@@ -9,7 +11,10 @@ class CartServices {
   static String totalItemKey = "total_cart_items";
   //
   static List<Cart> productsInCart = [];
-  //
+  final SharedPreferences sharedPreferences;
+  CartServices(
+    this.sharedPreferences,
+  );
   static Future<void> getCartItems() async {
     final cartList = LocalStorageService.prefs!.getString(
       cartItemsKey,

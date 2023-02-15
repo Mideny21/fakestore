@@ -14,52 +14,76 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(4),
-            topRight: Radius.circular(4),
-            bottomLeft: Radius.circular(4),
-            bottomRight: Radius.circular(4)),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.4),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: const Offset(0, 0) // changes position of shadow
-              ),
-        ],
-      ),
-      child: Column(children: [
-        Image.network(product.image,
-            height: 95, width: double.maxFinite, fit: BoxFit.cover),
-        Text(
-          product.title,
-          overflow: TextOverflow.ellipsis,
-        ),
+    return Stack(
+      children: [
         Container(
-          height: 40,
+          height: 170,
           decoration: BoxDecoration(
-              color: Colors.blueAccent, borderRadius: BorderRadius.circular(5)),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            TextButton(
-                onPressed: () {
-                  context.read<ProductProvider>().addToCart(product);
-                  // toastinfo(msg: "Added to cart");
-                },
-                child: const Text("Add to cart")),
-            Container(
-              height: 10,
-              color: Colors.white,
-              width: 8,
+            color: Colors.white,
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(4),
+                topRight: Radius.circular(4),
+                bottomLeft: Radius.circular(4),
+                bottomRight: Radius.circular(4)),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withOpacity(0.4),
+                  spreadRadius: 1,
+                  blurRadius: 1,
+                  offset: const Offset(0, 0) // changes position of shadow
+                  ),
+            ],
+          ),
+          child: Column(children: [
+            Image.network(product.image,
+                height: 110, width: double.maxFinite, fit: BoxFit.cover),
+            SizedBox(height: 5),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: Text(
+                product.title,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            Text(product.price.toString()),
           ]),
+        ),
+        SizedBox(height: 10),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: 40,
+            width: double.maxFinite,
+            decoration: BoxDecoration(color: Colors.blueAccent),
+            child: Row(children: [
+              TextButton.icon(
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                  onPressed: () {
+                    context.read<ProductProvider>().addToCart(product);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Added To cart"),
+                    ));
+                  },
+                  label: const Text(
+                    "Add to cart",
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  )),
+              Container(height: 20, color: Colors.white, width: 1),
+              SizedBox(width: 3),
+              Text(
+                'Tsh ${product.price.toString()}',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13),
+              ),
+            ]),
+          ),
         )
-      ]),
+      ],
     );
   }
 }
