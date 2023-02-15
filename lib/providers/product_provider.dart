@@ -1,4 +1,6 @@
+import 'package:fakestore/controllers/cart_controller.dart';
 import 'package:fakestore/controllers/product_controller.dart';
+import 'package:fakestore/models/cart.dart';
 import 'package:fakestore/models/products.dart';
 import 'package:fakestore/utils/error_handler.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +12,8 @@ class ProductProvider extends ChangeNotifier {
 
   bool loading = false;
   String status = '';
+  double subTotal = 0.0;
+  double total = 0.0;
   late ProductController productController;
 
   ProductProvider() {
@@ -29,6 +33,23 @@ class ProductProvider extends ChangeNotifier {
       loading = false;
       status = e.toString();
       notifyListeners();
+    }
+  }
+
+  addToCart(Product product) async {
+    //
+    final cart = Cart();
+    cart.price = product.price;
+    cart.productId = product.id;
+    cart.title = product.title;
+    cart.image = product.image;
+    cart.selectedQty = 1;
+
+    try {
+      await CartServices.addToCart(cart);
+      print(cart.productId);
+    } catch (error) {
+      print("Cart Error => $error");
     }
   }
 }
