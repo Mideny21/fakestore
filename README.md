@@ -19,3 +19,8 @@ Home Screen                    |   Cart screen             |
 ```
 
   <br/>
+
+  ## How to get the file 
+
+Go to File button on this repository and search for app-release.apk to get the APK
+
