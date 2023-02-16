@@ -4,7 +4,7 @@
 
 Home Screen                    |   Cart screen             | 
 :-------------------------:|:-------------------------:|
-![](https://github.com/Mideny21/fakestore/blob/master/screenshots/home.png?raw=true)|![](https://github.com/Mideny21/fakestore/blob/master/screenshots/cart.png?raw=true)
+![](https://github.com/Mideny21/fakestore/blob/main/screenshots/home.png?raw=true)|![](https://github.com/Mideny21/fakestore/blob/main/screenshots/cart.png?raw=true)
 
   <br/>
 
