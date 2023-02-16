@@ -30,6 +30,8 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     List<Product>? products = productProvider.products;
+
+    // ANIMATION IMPLEMENTATIONS
     final options = LiveOptions(
       showItemInterval: const Duration(milliseconds: 55),
       visibleFraction: 0.05,

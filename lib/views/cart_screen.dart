@@ -1,6 +1,7 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:fakestore/models/cart.dart';
 import 'package:fakestore/providers/cart_provider.dart';
+import 'package:fakestore/utils/colors.dart';
 import 'package:fakestore/views/widgets/cart_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,8 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
     List<Cart>? carts = cartProvider.cartItems;
+
+    // ANIMATION IMPLEMENTATIONS
     final options = LiveOptions(
       showItemInterval: const Duration(milliseconds: 55),
       visibleFraction: 0.05,
@@ -92,21 +95,38 @@ class _CartScreenState extends State<CartScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text("Cart Screen")),
+      appBar: AppBar(
+          backgroundColor: AppColors.alternativeColor,
+          title: Text("Cart Screen")),
       bottomSheet: Container(
-        height: 60,
+        height: 95,
         color: Colors.grey.shade400,
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(
-            "Total Price:",
-            style: TextStyle(fontSize: 24),
-          ),
-          SizedBox(width: 10),
-          Text(
-            cartProvider.totalCartPrice.toString(),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-          )
-        ]),
+        child: Column(
+          children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(
+                "Total Price:",
+                style: TextStyle(fontSize: 24),
+              ),
+              SizedBox(width: 10),
+              Text(
+                cartProvider.totalCartPrice.toString(),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              ),
+            ]),
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.6,
+                child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      'CHECKOUT',
+                      style: TextStyle(
+                          letterSpacing: 0.8,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    )))
+          ],
+        ),
       ),
       body: cartProvider.loading
           ? SizedBox(

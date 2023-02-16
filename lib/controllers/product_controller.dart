@@ -15,8 +15,6 @@ class ProductController {
         HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
       });
-      print(response.body);
-      print(response.request);
 
       List allproducts = jsonDecode(response.body);
 

@@ -1,6 +1,7 @@
 import 'package:fakestore/models/products.dart';
 import 'package:fakestore/providers/cart_provider.dart';
 import 'package:fakestore/providers/product_provider.dart';
+import 'package:fakestore/utils/colors.dart';
 import 'package:fakestore/utils/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,7 @@ class ProductCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 170,
+          height: 188,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: const BorderRadius.only(
@@ -53,7 +54,8 @@ class ProductCard extends StatelessWidget {
           child: Container(
             height: 40,
             width: double.maxFinite,
-            decoration: BoxDecoration(color: Colors.blueAccent),
+            decoration: BoxDecoration(
+                color: AppColors.alternativeColor.withOpacity(0.8)),
             child: Row(children: [
               TextButton.icon(
                   icon: Icon(

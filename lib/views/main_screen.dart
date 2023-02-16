@@ -1,6 +1,8 @@
 import 'package:fakestore/providers/cart_provider.dart';
+import 'package:fakestore/utils/colors.dart';
 import 'package:fakestore/views/cart_screen.dart';
 import 'package:fakestore/views/home_screen.dart';
+import 'package:fakestore/views/widgets/top_view.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:provider/provider.dart';
@@ -19,7 +21,10 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fake Store'),
+        backgroundColor: AppColors.alternativeColor,
+        title: Text(
+          'Fake Store',
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -36,16 +41,14 @@ class _MainScreenState extends State<MainScreen> {
                     );
                   }),
                 ),
-                child: Icon(
-                  Icons.shopping_cart,
-                  size: 25,
-                ),
+                child: Icon(Icons.shopping_cart, size: 25),
               ))
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
-        child: ListView(children: [HomeView()]),
+        child:
+            ListView(children: [TopView(), SizedBox(height: 10), HomeView()]),
       ),
     );
   }

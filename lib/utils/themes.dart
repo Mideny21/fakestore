@@ -10,7 +10,7 @@ final lightThemeData = ThemeData(
 
 final elevatedButtonThemeData = ElevatedButtonThemeData(
     style: TextButton.styleFrom(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: AppColors.alternativeColor,
         padding: const EdgeInsets.all(8),
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5)))));
+            borderRadius: BorderRadius.all(Radius.circular(3)))));

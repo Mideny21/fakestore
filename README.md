@@ -1,16 +1,21 @@
-# fakestore
+## fake Store app
 
-A new Flutter project.
+## Screenshots
 
-## Getting Started
+Home Screen                    |   Cart screen             | 
+:-------------------------:|:-------------------------:|
+![](https://github.com/Mideny21/fakestore/blob/master/screenshots/home.png?raw=true)|![](https://github.com/Mideny21/fakestore/blob/master/screenshots/cart.png?raw=true)
 
-This project is a starting point for a Flutter application.
+  <br/>
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Features :
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+• Display items on list item screen
+• Animation for list of product and cart as well
+• Add or delete item to cart
+• Real-time calculation of total price for cart Items
+• State management with  Provider
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  <br/>

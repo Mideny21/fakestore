@@ -26,7 +26,6 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
     try {
       _products = await productController.fetchAllProducts();
-      print(_products);
       loading = false;
       notifyListeners();
     } on Failure catch (e) {
@@ -37,7 +36,6 @@ class ProductProvider extends ChangeNotifier {
   }
 
   addToCart(Product product) async {
-    //
     final cart = Cart();
     cart.price = product.price;
     cart.productId = product.id;
